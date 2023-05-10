@@ -1,17 +1,18 @@
-import { utilService } from '../../../services/util.service.js';
-import { storageService } from '../../../services/async-storage.service.js';
+import { utilService } from './util.service.js'
+import { storageService } from './async-storage.service.js'
 
-export const carService = {
+const MAIL_KEY = 'mailDB'
+_createMails()
+
+export const mailService = {
     query,
     get,
     remove,
     save,
-    getEmptyCar,
+    getEmptyMail,
     getDefaultFilter,
+    getNextMailId
 }
-
-const EMAIL_KEY = 'emailDB'
-_createEmails()
 
 const gEmails = [
     {
@@ -83,59 +84,72 @@ const gEmails = [
 ]
 
 function query(filterBy = {}) {
-    return storageService.query(EMAIL_KEY)
-        .then(cars => {
+    // console.log('filterBy service:', filterBy)
+    return storageService.query(MAIL_KEY)
+        .then(mails => {
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
-                emails = mails.filter(car => regExp.test(car.vendor))
+                mails = mails.filter(mail => regExp.test(mail.vendor))
             }
 
             if (filterBy.minSpeed) {
-                cars = cars.filter(car => car.maxSpeed >= filterBy.minSpeed)
+                mails = mails.filter(mail => mail.maxSpeed >= filterBy.minSpeed)
             }
-            return cars
+            return mails
         })
 }
 
-function get(carId) {
-    return storageService.get(CAR_KEY, carId)
-    // return axios.get(CAR_KEY, carId)
+function get(mailId) {
+    return storageService.get(MAIL_KEY, mailId)
+    // return axios.get(MAIL_KEY, mailId)
 }
 
-function remove(carId) {
-    return storageService.remove(CAR_KEY, carId)
+function remove(mailId) {
+    return storageService.remove(MAIL_KEY, mailId)
 }
 
-function save(car) {
-    if (car.id) {
-        return storageService.put(CAR_KEY, car)
+function save(mail) {
+    if (mail.id) {
+        return storageService.put(MAIL_KEY, mail)
     } else {
-        return storageService.post(CAR_KEY, car)
+        return storageService.post(MAIL_KEY, mail)
     }
 }
 
-function getEmptyCar(vendor = '', maxSpeed = '') {
+function getNextMailId(mailId) {
+    return storageService.query(MAIL_KEY)
+        .then((mails) => {
+            let mailIdx = mails.findIndex(mail => mail.id === mailId)
+            if(mailIdx === mails.length - 1) mailIdx = -1
+            return mails[mailIdx + 1].id
+        })
+}
+
+function getEmptyMail(vendor = '', maxSpeed = '') {
     return { id: '', vendor, maxSpeed }
 }
 
-function getDefaultFilter() {
-    return { txt: '', minSpeed: '' }
-}
-
-function _createCars() {
-    let cars = utilService.loadFromStorage(CAR_KEY)
-    if (!cars || !cars.length) {
-        cars = []
-        cars.push(_createCar('audu', 300))
-        cars.push(_createCar('fiak', 120))
-        cars.push(_createCar('subali', 50))
-        cars.push(_createCar('mitsu', 150))
-        utilService.saveToStorage(CAR_KEY, cars)
+function getDefaultFilter(searchParams = { get: () => { } }) {
+    return {
+        txt: searchParams.get('txt') || '',
+        minSpeed: searchParams.get('minSpeed') || ''
     }
 }
 
-function _createCar(vendor, maxSpeed = 250) {
-    const car = getEmptyCar(vendor, maxSpeed)
-    car.id = utilService.makeId()
-    return car
+function _createMails() {
+    let mails = utilService.loadFromStorage(MAIL_KEY)
+    if (!mails || !mails.length) {
+        mails = []
+        mails.push(_createMail('audu', 300))
+        mails.push(_createMail('fiak', 120))
+        mails.push(_createMail('subali', 50))
+        mails.push(_createMail('mitsu', 150))
+        utilService.saveToStorage(MAIL_KEY, mails)
+    }
+}
+
+function _createMail(vendor, maxSpeed = 250) {
+    const mail = getEmptyMail(vendor, maxSpeed)
+    mail.id = utilService.makeId()
+    return mail
 }
