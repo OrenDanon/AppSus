@@ -16,25 +16,29 @@ export function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/mail" element={<MailIndex />} />
 
-                {/* <Route path="/mail/list" element={<MailList mails={mails} onRemoveMail={onRemoveMail} />} />
-                <Route path="/mail/table" element={<DataTable mails={mails} />} />
-                <Route path="/mail/details" element={<MailDetails mails={mails} />} />
-                <Route path="/mail/details/:mailId" element={<MailDetails mails={mails} />} />
-                <Route path="/mail/edit" element={<MailEdit />} />
-                <Route path="/mail/edit/:mailId" element={<MailEdit />} /> */}
+                <Route path="/mail" element={<MailIndex />}>
+
+                    <Route path="list" element={<MailList mails={mails} onRemoveMail={onRemoveMail} />} />
+                    <Route path="table" element={<DataTable mails={mails} />} />
+                    <Route path="details" element={<MailDetails mails={mails} />} />
+                    <Route path="details/:mailId" element={<MailDetails mails={mails} />} />
+                    <Route path="edit" element={<MailEdit />} />
+                    <Route path="edit/:mailId" element={<MailEdit />} />
+
+                </Route>
 
 
-                <Route path="/note" element={<NoteIndex />} />
+                <Route path="/note" element={<NoteIndex />}>
 
-                {/* <Route path="/note/list" element={<NoteList notes={notes} onRemoveNote={onRemoveNote} />} />
-                <Route path="/note/table" element={<DataTable notes={notes} />} />
-                <Route path="/note/details" element={<NoteDetails notes={notes} />} />
-                <Route path="/note/details/:noteId" element={<NoteDetails notes={notes} />} />
-                <Route path="/note/edit" element={<NoteEdit />} />
-                <Route path="/note/edit/:noteId" element={<NoteEdit />} /> */}
+                    <Route path="list" element={<NoteList notes={notes} onRemoveNote={onRemoveNote} />} />
+                    <Route path="table" element={<DataTable notes={notes} />} />
+                    <Route path="details" element={<NoteDetails notes={notes} />} />
+                    <Route path="details/:noteId" element={<NoteDetails notes={notes} />} />
+                    <Route path="edit" element={<NoteEdit />} />
+                    <Route path="edit/:noteId" element={<NoteEdit />} />
 
+                </Route>
 
             </Routes>
         </section>
