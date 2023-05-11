@@ -15,28 +15,16 @@ export function App() {
         <section className="app">
             <AppHeader />
             <Routes>
-<<<<<<< HEAD
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
 
                 <Route path="/mail" element={<MailIndex />}>
 
-=======
-                <Route path="/mail" element={<MailIndex />}>
-
-                    {/* <Route path="list" element={<MailList mails={mails} onTrashMail={onTrashMail} />} /> */}
-                    {/* <Route path="table" element={<DataTable mails={mails} />} /> */}
-                    {/* <Route path="details" element={<MailDetails mails={mails} />} /> */}
-                    {/* <Route path="details/:mailId" element={<MailDetails mails={mails} />} /> */}
-                    {/* <Route path="edit" element={<MailEdit />} /> */}
-                    {/* <Route path="edit/:mailId" element={<MailEdit />} /> */}
->>>>>>> ecdfb9ebbc69f255aa9c6e7e72a1380fe3cc5577
-                    <Route path="list" element={<MailList mails={mails} onRemoveMail={onRemoveMail} />} />
-                    <Route path="table" element={<DataTable mails={mails} />} />
-                    <Route path="details" element={<MailDetails mails={mails} />} />
-                    <Route path="details/:mailId" element={<MailDetails mails={mails} />} />
-                    <Route path="edit" element={<MailEdit />} />
-                    <Route path="edit/:mailId" element={<MailEdit />} />
+                    {/* <Route path="list" element={<MailList mails={mails} onRemoveMail={onRemoveMail} />} /> */}
+                    {/* <Route path="details" element={<MailDetails mails={mails} />} />
+                    <Route path="details/:mailId" element={<MailDetails mails={mails} />} /> */}
+                    {/* <Route path="edit" element={<MailEdit />} />
+                    <Route path="edit/:mailId" element={<MailEdit />} /> */}
 
                 </Route>
 
@@ -48,11 +36,6 @@ export function App() {
                     <Route path="details/:noteId" element={<NoteDetails notes={notes} />} />
                     <Route path="edit" element={<NoteEdit />} />
                     <Route path="edit/:noteId" element={<NoteEdit />} />
-<<<<<<< HEAD
-=======
-
-                </Route>
->>>>>>> ecdfb9ebbc69f255aa9c6e7e72a1380fe3cc5577
                     <Route path="edit/:noteId" element={<NoteEdit />} /> */}
 
                 </Route>
