@@ -36,6 +36,8 @@ export function App() {
                     <Route path="details/:noteId" element={<NoteDetails notes={notes} />} />
                     <Route path="edit" element={<NoteEdit />} />
                     <Route path="edit/:noteId" element={<NoteEdit />} />
+
+                </Route>
                     <Route path="edit/:noteId" element={<NoteEdit />} /> */}
 
                 </Route>
