@@ -8,8 +8,12 @@ export function DataTable({ notes }) {
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Vendor</th>
-                <th>Speed</th>
+                <th>Created At</th>
+                <th>Type</th>
+                <th>IsPinned</th>
+                <th>Style</th>
+                <th>Info</th>
+                <th>Buttons</th>
             </tr>
         </thead>
         <tbody>

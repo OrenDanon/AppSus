@@ -1,10 +1,13 @@
-export function NotePreview({ vendor, maxSpeed }) {
+export function NotePreview({ id, createdAt, type, isPinned, style, info }) {
 
     return (
         <article className="note-preview">
-            <h2>Note Vendor: {vendor = 'audi'}</h2>
-            <h4>Max Speed: {maxSpeed = 333}</h4>
-            <img src={`../../../assets/img/audi.jpg`} alt="" />
+            <h3>Id: {id}</h3>
+            <h3>Created At: {createdAt}</h3>
+            <h3>Type: {type}</h3>
+            <h3>Is Pinned: {isPinned}</h3>
+            <h3>Style: {style.backgroundColor}</h3>
+            <h3>Info: {info.txt}</h3>
         </article>
     )
 }

@@ -93,8 +93,8 @@ function getNextNoteId(noteId) {
         })
 }
 
-function getEmptyNote(vendor = '', maxSpeed = '') {
-    return { id: '', vendor, maxSpeed }
+function getEmptyNote(createdAt, type = '', isPinned = false, style = { backgroundColor: '#ddd' }, info = { txt: '' }) {
+    return { id: '', createdAt, type, isPinned, style, info }
 }
 
 function getDefaultFilter(searchParams = { get: () => { } }) {
@@ -105,19 +105,14 @@ function getDefaultFilter(searchParams = { get: () => { } }) {
 }
 
 function _createNotes() {
-    let notes = storageService.loadFromStorage(NOTE_KEY)
+    let notes = gNotes || storageService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
-        notes = []
-        notes.push(_createNote('audu', 300))
-        notes.push(_createNote('fiak', 120))
-        notes.push(_createNote('subali', 50))
-        notes.push(_createNote('mitsu', 150))
         storageService.saveToStorage(NOTE_KEY, notes)
     }
 }
 
-function _createNote(vendor, maxSpeed = 250) {
-    const note = getEmptyNote(vendor, maxSpeed)
+function _createNote(id = 007, createdAt, type, isPinned, style, info) {
+    const note = getEmptyNote(createdAt, type, isPinned, style, info)
     note.id = utilService.makeId()
     return note
 }
