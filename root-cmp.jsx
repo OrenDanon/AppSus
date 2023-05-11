@@ -20,11 +20,18 @@ export function App() {
 
                 <Route path="/mail" element={<MailIndex />}>
 
+<<<<<<< HEAD
                     {/* <Route path="list" element={<MailList mails={mails} onRemoveMail={onRemoveMail} />} />
                     <Route path="table" element={<DataTable mails={mails} />} />
                     <Route path="details" element={<MailDetails mails={mails} />} />
                     <Route path="details/:mailId" element={<MailDetails mails={mails} />} />
                     <Route path="edit" element={<MailEdit />} />
+=======
+                    {/* <Route path="list" element={<MailList mails={mails} onRemoveMail={onRemoveMail} />} /> */}
+                    {/* <Route path="details" element={<MailDetails mails={mails} />} />
+                    <Route path="details/:mailId" element={<MailDetails mails={mails} />} /> */}
+                    {/* <Route path="edit" element={<MailEdit />} />
+>>>>>>> beb9771c3d1e9e4d8eacc7e1ef5ff91f81afee20
                     <Route path="edit/:mailId" element={<MailEdit />} /> */}
 
                 </Route>
@@ -36,6 +43,12 @@ export function App() {
                     <Route path="details" element={<NoteDetails notes={notes} />} />
                     <Route path="details/:noteId" element={<NoteDetails notes={notes} />} />
                     <Route path="edit" element={<NoteEdit />} />
+<<<<<<< HEAD
+=======
+                    <Route path="edit/:noteId" element={<NoteEdit />} />
+
+                </Route>
+>>>>>>> beb9771c3d1e9e4d8eacc7e1ef5ff91f81afee20
                     <Route path="edit/:noteId" element={<NoteEdit />} /> */}
 
                 </Route>
