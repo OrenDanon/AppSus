@@ -1,78 +1,68 @@
-// const { useEffect, useState } = React
-// const { Link, useSearchParams, Route, Routes } = ReactRouterDOM
-// const Router = ReactRouterDOM.HashRouter
+const { useEffect, useState } = React
+const { Link, useSearchParams, Route, Routes } = ReactRouterDOM
+const Router = ReactRouterDOM.HashRouter
 
 // import { MailHeader } from "../cmps/mail-header.jsx"
 // import { MailFooter } from "../cmps/mail-footer.jsx"
 // import { MailFilter } from "../cmps/mail-filter.jsx"
-// import { MailList } from "../cmps/mail-list.jsx"
 // import { DataTable } from "../cmps/data-table/data-table.jsx"
 // import { MailDetails } from "../cmps/mail-details.jsx"
 // import { MailEdit } from "../cmps/mail-edit.jsx"
-import { mailService } from "../services/mail.service.js"
 // import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
+import { MailList } from "../cmps/mail-list.jsx"
+import { mailService } from "../services/mail.service.js"
+import { EmailAside, MailAside } from "../cmps/mail-aside.jsx"
+
+export function MailIndex() {
+
+    // const [searchParams, setSearchParams] = useSearchParams()
+    // const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter(searchParams))
+    const [mails, setMails] = useState([])
+
+    // useEffect(() => {
+    //     loadMails()
+    //     showSuccessMsg('Welcome to mail index!')
+    //     setSearchParams(filterBy)
+    // }, [filterBy])
+
+    useEffect(() => {
+        loadMails()
+    },[])
 
 
-// export function MailIndex() {
+    function loadMails() {
+        mailService.query().then(mails => setMails(mails))
+        // mailService.query().then(setMails)
+    }
 
-//     const [searchParams, setSearchParams] = useSearchParams()
-//     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter(searchParams))
-//     const [mails, setMails] = useState([])
+    // function onTrashMail(mailId) {
+    //     mailService.remove(mailId).then(() => {
+    //         const updatedMails = mails.filter(mail => mail.id !== mailId)
+    //         setMails(updatedMails)
+    //         showSuccessMsg(`Mail (${mailId}) removed!`)
+    //     })
 
-//     useEffect(() => {
-//         loadMails()
-//         showSuccessMsg('Welcome to mail index!')
-//         setSearchParams(filterBy)
-//     }, [filterBy])
+    // }
 
-//     function loadMails() {
-//         mailService.query(filterBy).then(mails => setMails(mails))
-//         // mailService.query().then(setMails)
-//     }
+    // function onSetFilter(filterBy) {
+    //     setFilterBy(prevFilterBy => ({ ...prevFilterBy, ...filterBy }))
+    // }
 
-//     function onRemoveMail(mailId) {
-//         mailService.remove(mailId).then(() => {
-//             const updatedMails = mails.filter(mail => mail.id !== mailId)
-//             setMails(updatedMails)
-//             showSuccessMsg(`Mail (${mailId}) removed!`)
-//         })
+    // console.log('render');
+    return (
+        <section className="mail-index full main-layout">
+            
+            <MailList mails={mails}  />
+            {/* <EmailAside onSetFilter={onSetFilter} filterBy={filterBy} setIsDetails={setIsDetails} /> */}
+            {/* onTrashMail={onTrashMail} */}
 
-//     }
+            {/* <MailHeader /> */}
+            {/* <MailFilter onSetFilter={onSetFilter} filterBy={filterBy} /> */}
+            {/* <MailDetails mails={mails} />
+            <Link to="/mail/edit">Add Mail</Link> */}
 
-//     function onSetFilter(filterBy) {
-//         setFilterBy(prevFilterBy => ({ ...prevFilterBy, ...filterBy }))
-//     }
+            {/* <MailFooter /> */}
+        </section>
+    )
+}
 
-//     // console.log('render');
-//     return (
-//         <section className="mail-index full main-layout">
-//             <MailHeader />
-
-//             <MailFilter onSetFilter={onSetFilter} filterBy={filterBy} />
-//             <Link to="/mail/edit">Add Mail</Link>
-//             <MailList mails={mails} onRemoveMail={onRemoveMail} />
-//             <DataTable mails={mails} />
-//             <MailDetails mails={mails} />
-
-//             <MailFooter />
-//         </section>
-//     )
-
-//     // return <Router>
-//     //     <section className="mail-index full main-layout">
-//     //         <MailHeader />
-//     //         <MailFilter onSetFilter={onSetFilter} filterBy={filterBy} />
-
-//     //         <Routes>
-//     //             <Route path="/mail/list" element={<MailList mails={mails} onRemoveMail={onRemoveMail} />} />
-//     //             <Route path="/mail/table" element={<DataTable mails={mails} />} />
-//     //             <Route path="/mail/details" element={<MailDetails mails={mails} />} />
-//     //             <Route path="/mail/details/:mailId" element={<MailDetails mails={mails} />} />
-//     //             <Route path="/mail/edit" element={<MailEdit />} />
-//     //             <Route path="/mail/edit/:mailId" element={<MailEdit />} />
-//     //         </Routes>
-
-//     //         <MailFooter />
-//     //     </section>
-//     // </Router>
-// }
