@@ -20,12 +20,7 @@ export function App() {
 
                 <Route path="/mail" element={<MailIndex />}>
 
-                    {/* <Route path="details/:mailId" element={<MailDetails />} />
-                    <Route path="list" element={<MailList mails={mails} onRemoveMail={onRemoveMail} />} />
-                    <Route path="table" element={<DataTable mails={mails} />} />
-                    <Route path="edit" element={<MailEdit />} />
                     {/* <Route path="list" element={<MailList mails={mails} onRemoveMail={onRemoveMail} />} />
-                    <Route path="table" element={<DataTable mails={mails} />} />
                     <Route path="details" element={<MailDetails mails={mails} />} />
                     <Route path="details/:mailId" element={<MailDetails mails={mails} />} />
                     <Route path="edit" element={<MailEdit />} />
