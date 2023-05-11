@@ -1,5 +1,6 @@
-import { utilService } from './util.service.js'
-import { storageService } from './async-storage.service.js'
+import { utilService } from '../../../services/util.service.js'
+import { asyncStorageService } from '../../../services/async-storage.service.js'
+import { storageService } from '../../../services/storage.service.js'
 
 const MAIL_KEY = 'mailDB'
 _createMails()
@@ -28,7 +29,7 @@ const gEmails = [
 
     {
         id: 'e102',
-        subject: 'Monhly Invoice',
+        subject: 'Monthly Invoice',
         body: 'Your monthly invoice is here, you can watch it below',
         isRead: false,
         sentAt: 1551133930594,
@@ -85,7 +86,7 @@ const gEmails = [
 
 function query(filterBy = {}) {
     // console.log('filterBy service:', filterBy)
-    return storageService.query(MAIL_KEY)
+    return asyncStorageService.query(MAIL_KEY)
         .then(mails => {
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
@@ -100,24 +101,24 @@ function query(filterBy = {}) {
 }
 
 function get(mailId) {
-    return storageService.get(MAIL_KEY, mailId)
+    return asyncStorageService.get(MAIL_KEY, mailId)
     // return axios.get(MAIL_KEY, mailId)
 }
 
 function remove(mailId) {
-    return storageService.remove(MAIL_KEY, mailId)
+    return asyncStorageService.remove(MAIL_KEY, mailId)
 }
 
 function save(mail) {
     if (mail.id) {
-        return storageService.put(MAIL_KEY, mail)
+        return asyncStorageService.put(MAIL_KEY, mail)
     } else {
-        return storageService.post(MAIL_KEY, mail)
+        return asyncStorageService.post(MAIL_KEY, mail)
     }
 }
 
 function getNextMailId(mailId) {
-    return storageService.query(MAIL_KEY)
+    return asyncStorageService.query(MAIL_KEY)
         .then((mails) => {
             let mailIdx = mails.findIndex(mail => mail.id === mailId)
             if(mailIdx === mails.length - 1) mailIdx = -1
@@ -137,14 +138,14 @@ function getDefaultFilter(searchParams = { get: () => { } }) {
 }
 
 function _createMails() {
-    let mails = utilService.loadFromStorage(MAIL_KEY)
+    let mails = storageService.loadFromStorage(MAIL_KEY)
     if (!mails || !mails.length) {
         mails = []
         mails.push(_createMail('audu', 300))
         mails.push(_createMail('fiak', 120))
         mails.push(_createMail('subali', 50))
         mails.push(_createMail('mitsu', 150))
-        utilService.saveToStorage(MAIL_KEY, mails)
+        storageService.saveToStorage(MAIL_KEY, mails)
     }
 }
 

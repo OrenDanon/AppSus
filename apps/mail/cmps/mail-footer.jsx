@@ -1,21 +1,21 @@
 const { useState } = React
 
-import { ColorInput } from "./dynamic-inputs/colot-input.jsx"
+import { ColorInput } from "./dynamic-inputs/color-input.jsx"
 import { FontsizeInput } from "./dynamic-inputs/fontsize-input.jsx"
 
-export function AppFooter() {
+export function MailFooter() {
     const [cmpType, setCmpType] = useState('color')
-    const [footerStyle, setFooterStyle] = useState({
+    const [mailFooterStyle, setMailFooterStyle] = useState({
         backgroundColor: 'gray',
         fontSize: '16px'
     })
 
-    function onSetFooterStyle(newStyle) {
-        setFooterStyle((prevStyle) => ({ ...prevStyle, ...newStyle }))
+    function onSetMailFooterStyle(newStyle) {
+        setMailFooterStyle((prevStyle) => ({ ...prevStyle, ...newStyle }))
     }
 
-    return <footer className="app-footer full main-layout" style={footerStyle}>
-        <h3>Hello from footer</h3>
+    return <footer className="mail-footer full main-layout" style={mailFooterStyle}>
+        <h3>Hello from mail footer</h3>
         <section>
             <select onChange={(ev) => { setCmpType(ev.target.value) }}>
                 <option value="color">Color</option>
@@ -23,7 +23,7 @@ export function AppFooter() {
             </select>
         </section>
         <section>
-            <DynamicCmp cmpType={cmpType} name="Muki" onSetFooterStyle={onSetFooterStyle} />
+            <DynamicCmp cmpType={cmpType} name="Muki" onSetFooterStyle={onSetMailFooterStyle} />
         </section>
     </footer>
 }

@@ -1,5 +1,6 @@
-import { utilService } from './util.service.js'
-import { storageService } from './async-storage.service.js'
+import { utilService } from '../../../services/util.service.js'
+import { asyncStorageService } from '../../../services/async-storage.service.js'
+import { storageService } from '../../../services/storage.service.js'
 
 const NOTE_KEY = 'noteDB'
 _createNotes()
@@ -16,7 +17,7 @@ export const noteService = {
 
 function query(filterBy = {}) {
     // console.log('filterBy service:', filterBy)
-    return storageService.query(NOTE_KEY)
+    return asyncStorageService.query(NOTE_KEY)
         .then(notes => {
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
@@ -31,24 +32,24 @@ function query(filterBy = {}) {
 }
 
 function get(noteId) {
-    return storageService.get(NOTE_KEY, noteId)
+    return asyncStorageService.get(NOTE_KEY, noteId)
     // return axios.get(NOTE_KEY, noteId)
 }
 
 function remove(noteId) {
-    return storageService.remove(NOTE_KEY, noteId)
+    return asyncStorageService.remove(NOTE_KEY, noteId)
 }
 
 function save(note) {
     if (note.id) {
-        return storageService.put(NOTE_KEY, note)
+        return asyncStorageService.put(NOTE_KEY, note)
     } else {
-        return storageService.post(NOTE_KEY, note)
+        return asyncStorageService.post(NOTE_KEY, note)
     }
 }
 
 function getNextNoteId(noteId) {
-    return storageService.query(NOTE_KEY)
+    return asyncStorageService.query(NOTE_KEY)
         .then((notes) => {
             let noteIdx = notes.findIndex(note => note.id === noteId)
             if(noteIdx === notes.length - 1) noteIdx = -1
@@ -68,14 +69,14 @@ function getDefaultFilter(searchParams = { get: () => { } }) {
 }
 
 function _createNotes() {
-    let notes = utilService.loadFromStorage(NOTE_KEY)
+    let notes = storageService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
         notes = []
         notes.push(_createNote('audu', 300))
         notes.push(_createNote('fiak', 120))
         notes.push(_createNote('subali', 50))
         notes.push(_createNote('mitsu', 150))
-        utilService.saveToStorage(NOTE_KEY, notes)
+        storageService.saveToStorage(NOTE_KEY, notes)
     }
 }
 
