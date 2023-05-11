@@ -1,20 +1,20 @@
 const { Fragment, useState } = React
 const { Link } = ReactRouterDOM
 
-export function DataTableRow({ id, createdAt, type, isPinned, style, info }) {
+export function DataTableRow({ note }) {
     const [isExpanded, setIsExpanded] = useState(false)
 
     return <Fragment>
         <tr onClick={() => setIsExpanded(prevIsExpanded => !prevIsExpanded)}>
-            <td>Id: {id}</td>
-            <td>Created At: {createdAt}</td>
-            <td>Type: {type}</td>
-            <td>Is Pinned: {isPinned}</td>
-            <td>Style: {style.backgroundColor}</td>
-            <td>Info: {info.txt}</td>
+            <td>Id: {note.id}</td>
+            <td>Created At: {note.createdAt.toString()}</td>
+            <td>Type: {note.type}</td>
+            <td>Is Pinned: {`${note.isPinned}`}</td>
+            <td>Note Style BackgroundColor: {note.style.backgroundColor}</td>
+            <td>Note Info Txt: {note.info.txt}</td>
             <td>
-                <Link to={`/note/${id}`}>Details</Link> |
-                <Link to={`/note/edit/${id}`}>Edit</Link>
+                <Link to={`/note/${note.id}`}>Details</Link> |
+                <Link to={`/note/edit/${note.id}`}>Edit</Link>
             </td>
         </tr>
         {
