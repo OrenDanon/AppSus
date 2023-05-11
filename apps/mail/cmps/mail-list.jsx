@@ -4,23 +4,24 @@ import { MailPreview } from "./mail-preview"
 
 export function MailList({ mails, onTrashMail, onStarMail, }) {
 
-    return <Fragment>
-    
-        <tr onClick={() => setIsExpanded(prevIsExpanded => !prevIsExpanded)}>
-        <td>{car.vendor}</td>
-        <td>{car.maxSpeed}</td>
-        <td>
-            <Link to={`/car/${car.id}`}>Details</Link> |
-            <Link to={`/car/edit/${car.id}`}>Edit</Link>
-        </td>
-    </tr>
-    {
-        isExpanded && <tr>
-            <td colSpan="3">
-            </td>
-        </tr>
-    }
-</Fragment >
+    return ( 
+        <section className="mail-list">
+
+            <table>
+                <tbody>
+                    {mails.map(mail =>
+                        <tr key={mail.id} className="mail-row" onClick={() => goToMailDetails(mail.id)}
+                        >
+                            {/* <td><MailStar mail={mail} /></td>  */}
+                            
+                            <MailPreview mail={mail} onTrashMail={onTrashMail}/>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+
+        </section>
+    )
 }
 
 
