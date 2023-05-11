@@ -11,7 +11,7 @@ export const mailService = {
     remove,
     save,
     getEmptyMail,
-    getDefaultFilter,
+    // getDefaultFilter,
     getNextMailId
 }
 
@@ -93,9 +93,9 @@ function query(filterBy = {}) {
                 mails = mails.filter(mail => regExp.test(mail.vendor))
             }
 
-            if (filterBy.minSpeed) {
-                mails = mails.filter(mail => mail.maxSpeed >= filterBy.minSpeed)
-            }
+            // if (filterBy.minSpeed) {
+            //     mails = mails.filter(mail => mail.maxSpeed >= filterBy.minSpeed)
+            // }
             return mails
         })
 }
@@ -126,31 +126,103 @@ function getNextMailId(mailId) {
         })
 }
 
-function getEmptyMail(vendor = '', maxSpeed = '') {
-    return { id: '', vendor, maxSpeed }
-}
-
-function getDefaultFilter(searchParams = { get: () => { } }) {
-    return {
-        txt: searchParams.get('txt') || '',
-        minSpeed: searchParams.get('minSpeed') || ''
+function getEmptyMail() {
+    return { 
+        id: utilService.makeId(),
+        subject: '',
+        body: '',
+        isRead: false,
+        sentAt: Date.now(),
+        removedAt: null,
+        from: 'user@appsus.com',
+        to: ''
     }
 }
+
+// function getDefaultFilter(searchParams = { get: () => { } }) {
+//     return {
+//         txt: searchParams.get('txt') || '',
+//         minSpeed: searchParams.get('minSpeed') || ''
+//     }
+// }
 
 function _createMails() {
     let mails = storageService.loadFromStorage(MAIL_KEY)
     if (!mails || !mails.length) {
-        mails = []
-        mails.push(_createMail('audu', 300))
-        mails.push(_createMail('fiak', 120))
-        mails.push(_createMail('subali', 50))
-        mails.push(_createMail('mitsu', 150))
+        mails = [
+        {
+            id: utilService.makeId(),
+            subject: 'Miss you!',
+            body: 'Would love to catch up sometimes',
+            isRead: false,
+            sentAt: 1551133930594,
+            removedAt: null,
+            from: 'momo@momo.com',
+            to: 'user@appsus.com'
+        },
+    
+        {
+            id: utilService.makeId(),
+            subject: 'Monthly Invoice',
+            body: 'Your monthly invoice is here, you can watch it below',
+            isRead: false,
+            sentAt: 1551133930594,
+            removedAt: null,
+            from: 'donotreply@pango.co.il',
+            to: 'user@appsus.com'
+        },
+    
+        {
+            id: utilService.makeId(),
+            subject: 'Monthly expenses',
+            body: 'Your monthly expenses report is here',
+            isRead: false,
+            sentAt: 1551133930594,
+            removedAt: null,
+            from: 'info@max.max-finance.co.il',
+            to: 'user@appsus.com'
+        },
+    
+        {
+            id: utilService.makeId(),
+            subject: 'Your flight has been booked',
+            body: 'Your flight aj850 has been booked for 09/07/2023',
+            isRead: false,
+            sentAt: 1551133930594,
+            removedAt: null,
+            from: 'confirmation@easyJet.com',
+            to: 'user@appsus.com'
+        },
+    
+        {
+            id: utilService.makeId(),
+            subject: 'Your order has been shipped',
+            body: 'Your order #KL7510 has been shipped',
+            isRead: false,
+            sentAt: 1551133930594,
+            removedAt: null,
+            from: 'noreply@info.iherb.com',
+            to: 'user@appsus.com'
+        },
+    
+        {
+            id: utilService.makeId(),
+            subject: 'Ride invoice',
+            body: 'You can see your ride invoice down below',
+            isRead: false,
+            sentAt: 1551133930594,
+            removedAt: null,
+            from: 'dott@m.ridedott.com',
+            to: 'user@appsus.com'
+        }
+    ]
+    
         storageService.saveToStorage(MAIL_KEY, mails)
     }
 }
 
-function _createMail(vendor, maxSpeed = 250) {
-    const mail = getEmptyMail(vendor, maxSpeed)
-    mail.id = utilService.makeId()
-    return mail
-}
+// function _createMail(vendor, maxSpeed = 250) {
+//     const mail = getEmptyMail(vendor, maxSpeed)
+//     mail.id = utilService.makeId()
+//     return mail
+// }
