@@ -11,85 +11,16 @@ export const mailService = {
     remove,
     save,
     getEmptyMail,
-    // getDefaultFilter,
+    getDefaultFilter,
     getNextMailId
 }
-
-const gEmails = [
-    {
-        id: 'e101',
-        subject: 'Miss you!',
-        body: 'Would love to catch up sometimes',
-        isRead: false,
-        sentAt: 1551133930594,
-        removedAt: null,
-        from: 'momo@momo.com',
-        to: 'user@appsus.com'
-    },
-
-    {
-        id: 'e102',
-        subject: 'Monthly Invoice',
-        body: 'Your monthly invoice is here, you can watch it below',
-        isRead: false,
-        sentAt: 1551133930594,
-        removedAt: null,
-        from: 'donotreply@pango.co.il',
-        to: 'user@appsus.com'
-    },
-
-    {
-        id: 'e103',
-        subject: 'Monthly expenses',
-        body: 'Your monthly expenses report is here',
-        isRead: false,
-        sentAt: 1551133930594,
-        removedAt: null,
-        from: 'info@max.max-finance.co.il',
-        to: 'user@appsus.com'
-    },
-
-    {
-        id: 'e104',
-        subject: 'Your flight has been booked',
-        body: 'Your flight aj850 has been booked for 09/07/2023',
-        isRead: false,
-        sentAt: 1551133930594,
-        removedAt: null,
-        from: 'confirmation@easyJet.com',
-        to: 'user@appsus.com'
-    },
-
-    {
-        id: 'e105',
-        subject: 'Your order has been shipped',
-        body: 'Your order #KL7510 has been shipped',
-        isRead: false,
-        sentAt: 1551133930594,
-        removedAt: null,
-        from: 'noreply@info.iherb.com',
-        to: 'user@appsus.com'
-    },
-
-    {
-        id: 'e106',
-        subject: 'Ride invoice',
-        body: 'You can see your ride invoice down below',
-        isRead: false,
-        sentAt: 1551133930594,
-        removedAt: null,
-        from: 'dott@m.ridedott.com',
-        to: 'user@appsus.com'
-    }
-
-]
 
 function query(filterBy = {}) {
     // console.log('filterBy service:', filterBy)
     return asyncStorageService.query(MAIL_KEY)
         .then(mails => {
-            if (filterBy.txt) {
-                const regExp = new RegExp(filterBy.txt, 'i')
+            if (filterBy.subject) {
+                const regExp = new RegExp(filterBy.subject, 'i')
                 mails = mails.filter(mail => regExp.test(mail.vendor))
             }
 
@@ -139,12 +70,12 @@ function getEmptyMail() {
     }
 }
 
-// function getDefaultFilter(searchParams = { get: () => { } }) {
-//     return {
-//         txt: searchParams.get('txt') || '',
-//         minSpeed: searchParams.get('minSpeed') || ''
-//     }
-// }
+function getDefaultFilter(searchParams = { get: () => { } }) {
+    return {
+        txt: searchParams.get('txt') || '',
+        minSpeed: searchParams.get('minSpeed') || ''
+    }
+}
 
 function _createMails() {
     let mails = storageService.loadFromStorage(MAIL_KEY)
