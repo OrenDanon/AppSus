@@ -7,7 +7,7 @@ export function DataTableRow({ note }) {
     return <Fragment>
         <tr onClick={() => setIsExpanded(prevIsExpanded => !prevIsExpanded)}>
             <td>Id: {note.id}</td>
-            <td>Created At: {note.createdAt}</td>
+            <td>Created At: {note.createdAt.toString()}</td>
             <td>Type: {note.type}</td>
             <td>Is Pinned: {`${note.isPinned}`}</td>
             <td>Note Style BackgroundColor: {note.style.backgroundColor}</td>

@@ -22,10 +22,6 @@ export function NoteIndex() {
 
     console.log('notes from note service:', notes);
 
-    // useEffect(() => {
-    //     loadNotes()
-    // }, [])
-
     useEffect(() => {
         loadNotes()
         showSuccessMsg('Welcome to note index!')
@@ -39,11 +35,11 @@ export function NoteIndex() {
     }
 
     function onRemoveNote(noteId) {
-        // noteService.remove(noteId).then(() => {
-        //     const updatedNotes = notes.filter(note => note.id !== noteId)
-        //     setNotes(updatedNotes)
-        //     showSuccessMsg(`Note (${noteId}) removed!`)
-        // })
+        noteService.remove(noteId).then(() => {
+            const updatedNotes = notes.filter(note => note.id !== noteId)
+            setNotes(updatedNotes)
+            showSuccessMsg(`Note (${noteId}) removed!`)
+        })
 
     }
 
@@ -51,7 +47,6 @@ export function NoteIndex() {
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, ...filterBy }))
     }
 
-    // console.log('render');
     return (
         <section className="note-index full main-layout">
             <NoteHeader />

@@ -21,12 +21,12 @@ function query(filterBy) {
         .then(notes => {
             if (!filterBy) filterBy = noteService.getDefaultFilter()
 
-            // if (filterBy.info.txt) {
-            //     const regExp = new RegExp(filterBy.info.txt, 'i')
-            //     notes = notes.filter(note => regExp.test(note.info.txt))
+            if (filterBy.info.txt) {
+                const regExp = new RegExp(filterBy.info.txt, 'i')
+                notes = notes.filter(note => regExp.test(note.info.txt))
 
-            // notes = notes.filter(note => note.info.txt.includes(filterBy.info.txt))
-            // }
+                // notes = notes.filter(note => note.info.txt.includes(filterBy.info.txt))
+            }
 
             if (filterBy.MinCreatedAt) {
                 notes = notes.filter(note => note.createdAt >= filterBy.MinCreatedAt)
@@ -35,6 +35,7 @@ function query(filterBy) {
             if (filterBy.type) {
                 const regExp = new RegExp(filterBy.type, 'i')
                 notes = notes.filter(note => regExp.test(note.type))
+
                 // notes = notes.filter(note => note.type.includes(filterBy.type))
             }
 
@@ -85,8 +86,8 @@ function getDefaultFilter(searchParams = { get: () => { } }) {
         // type: searchParams.get('type') || '',
 
         info: { txt: '' },
-        MinCreatedAt: 0,
-        type: 'Note'
+        MinCreatedAt: '',
+        type: ''
 
     }
 }
