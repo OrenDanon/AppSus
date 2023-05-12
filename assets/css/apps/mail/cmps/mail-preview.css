@@ -14,3 +14,13 @@
 .mail-preview img {
     max-width: 100px;
 }
+
+.read {
+    color: #aaa;
+    font-weight: normal;
+}
+
+.unread {
+    color: #000;
+    font-weight: bold;
+}

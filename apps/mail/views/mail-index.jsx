@@ -29,10 +29,8 @@ export function MailIndex() {
         loadMails()
     },[])
 
-
     function loadMails() {
         mailService.query().then(mails => setMails(mails))
-        // mailService.query().then(setMails)
     }
 
     // function onTrashMail(mailId) {

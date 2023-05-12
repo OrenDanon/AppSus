@@ -5,7 +5,7 @@ const { Link, useNavigate } = ReactRouterDOM
 import { mailService } from "../services/mail.service.js"
 
 export function MailPreview({ mail }) {
-    const history = useNavigate()
+    const navigate = useNavigate()
 
 
     const navigateToDetails = () => {
@@ -13,7 +13,7 @@ export function MailPreview({ mail }) {
     }
 
     return (
-        <tr onClick={navigateToDetails}>
+        <tr onClick={navigateToDetails} className={mail.isRead ? 'read' : 'unread'}>
             <td>*</td>
             <td>{mail.from}</td>
             <td>{mail.subject}</td>
@@ -22,17 +22,3 @@ export function MailPreview({ mail }) {
         </tr>
     )
 }
-
-//     return (
-
-//         <tr>
-//             <Link to={`/mail/${mail.id}`} >Details</Link>
-//             <td>*</td>
-//             <td>{mail.from}</td>
-//             <td>{mail.subject}</td>
-//             <td>{mail.body}</td>
-//             <td>{mail.sentAt}</td>
-//         </tr>
-
-//     )
-// }
