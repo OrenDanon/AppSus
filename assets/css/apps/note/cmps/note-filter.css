@@ -1,5 +1,5 @@
 .note-filter {
-    background-color: var(--clr2bg);
+    background-color: var(--note-clr-filter-bg);
 }
 
 .note-filter form {

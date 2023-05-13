@@ -1,5 +1,5 @@
 .note-header {
-    background-color: var(--clr1);
+    background-color: var(--note-clr-header-bg);
     color: var(--clr2bg-light);
     
 }

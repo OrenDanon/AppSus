@@ -12,5 +12,19 @@
     --gray1: rgb(240, 240, 240);
     --gray2: rgb(155, 155, 155);
     --gray3: rgb(44, 44, 44);
-  
+
+    /* Notes */
+    --note-clr-header-bg: #0c2d4f;
+    --note-clr-filter-bg: #113f6e;
+    --note-clr-list-bg: #185a9d;
+    --note-clr-table-bg: #185a9d;
+    --note-clr-details-bg: #467bb1;
+    --note-clr-edit-bg: #467bb1;
+    --note-clr-footer-bg: #0c2d4f;
+
+    --note-clr-style1-bg: #650066;
+    --note-clr-style2-bg: #7e0080;
+    --note-clr-style3-bg: #ca00cc;
+    --note-clr-style4-bg: #fc00ff;
+    --note-clr-style5-bg: #fd33ff;
 }
