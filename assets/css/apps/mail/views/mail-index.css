@@ -1,4 +1,4 @@
 .mail-index {
     display: grid;
-    grid-template-columns: 10em 1fr;
+    grid-template-columns: 0.5fr 3.5fr;
 }

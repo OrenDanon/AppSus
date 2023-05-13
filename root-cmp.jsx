@@ -19,10 +19,11 @@ export function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
 
-                <Route path="/mail" element={<MailIndex />}/>
-                <Route path="/mail/:mailId" element={<MailDetails/>} />
+                <Route path="/mail" element={<MailIndex />}>
+                    <Route path=":mailId" element={<MailDetails />} />
+                </Route>
 
-                    {/* <Route path="list" element={<MailList mails={mails} onRemoveMail={onRemoveMail} />} />
+                {/* <Route path="list" element={<MailList mails={mails} onRemoveMail={onRemoveMail} />} />
                     <Route path="edit" element={<MailEdit />} />
                     <Route path="edit/:mailId" element={<MailEdit />} /> */}
 

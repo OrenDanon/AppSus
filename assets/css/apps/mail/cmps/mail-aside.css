@@ -1,0 +1,23 @@
+aside {
+    background-color: #f7f7f7;
+    padding: 1em;
+    border: 1px solid #f3b7b7;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+aside ul li {
+    cursor: pointer;
+    padding: 0.5em 0;
+    padding: 10px;
+}
+
+aside ul li:hover {
+    background-color: #ddd;
+    font-weight: bold;
+    padding: 10px gray;
+    border-radius: 20px;
+}
