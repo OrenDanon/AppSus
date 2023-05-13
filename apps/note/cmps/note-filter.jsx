@@ -12,11 +12,8 @@ export function NoteFilter({ filterBy, onSetFilter }) {
         let field = target.name
         const value = target.type === 'number' ? (+target.value || '') : target.value
 
-        if (field === 'info') {
-            setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: { ['txt']: value } }))
-        } else {
-            setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
-        }
+        if (field === 'info') setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: { ['txt']: value } }))
+        else setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
 
         console.log('filterByToEdit from note filter', filterByToEdit)
     }

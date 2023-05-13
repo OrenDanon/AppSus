@@ -10,8 +10,8 @@ export function NoteHeader() {
                 <nav className="note-nav">
                     <NavLink to="/note/list" >List of notes</NavLink>
                     <NavLink to="/note/table" >Table of notes</NavLink>
-                    <NavLink to="/note/details/:noteId" >Note deatails</NavLink>
-                    <NavLink to="/note/edit/:noteId" >Edit note</NavLink>
+                    <NavLink to="/note/details" >Note deatails</NavLink>
+                    <NavLink to="/note/edit" >Edit note</NavLink>
                 </nav>
             </div>
         </header>

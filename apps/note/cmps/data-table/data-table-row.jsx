@@ -1,29 +1,45 @@
+import { utilService } from '../../../../services/util.service.js'
+
 const { Fragment, useState } = React
 const { Link } = ReactRouterDOM
 
-export function DataTableRow({ note }) {
+export function DataTableRow({ note, onRemoveNote }) {
     const [isExpanded, setIsExpanded] = useState(false)
 
+    let noteTodos = []
+    if (note.info.todos) {
+        noteTodos = note.info.todos.map(todo => (`Text: ${todo.txt}, Done At:  ${todo.doneAt.toString() || ''}`))
+    }
+
+
     return <Fragment>
-        <tr onClick={() => setIsExpanded(prevIsExpanded => !prevIsExpanded)}>
-            <td>Id: {note.id}</td>
-            <td>Created At: {note.createdAt.toString()}</td>
-            <td>Type: {note.type}</td>
-            <td>Is Pinned: {`${note.isPinned}`}</td>
-            <td>Note Style BackgroundColor: {note.style.backgroundColor}</td>
-            <td>Note Info Txt: {note.info.txt}</td>
+        <tr style={note.style} onClick={() => setIsExpanded(prevIsExpanded => !prevIsExpanded)}>
+            <td>{note.id}</td>
+            <td>{note.createdAt.toString()}</td>
+            <td>{note.type}</td>
+            <td>{note.info.txt}</td>
+            <td>{note.info.title || 'Empty'}</td>
             <td>
-                <Link to={`/note/${note.id}`}>Details</Link> |
-                <Link to={`/note/edit/${note.id}`}>Edit</Link>
+                <img src={note.info.url || '/assets//img/audi.jpg'} alt="note image" key={utilService.makeId()} />
+            </td>
+            <td>
+                {noteTodos.map(todo => <p key={utilService.makeId()} >{todo}</p>) || 'Empty'}
+            </td>
+            <td>
+                <button onClick={() => onRemoveNote(note.id)} >Remove</button>
+                {/* <button><Link to={`/note/table/details/${note.id}`}> Details </Link></button> */}
+                <button><Link to={`/note/details/${note.id}`}> Details </Link></button>
+                {/* <button><Link to={`/note/table/edit/${note.id}`}> Edit </Link></button> */}
+                <button><Link to={`/note/edit/${note.id}`}> Edit </Link></button>
             </td>
         </tr>
-        {
+        {/* {
             isExpanded && <tr>
                 <td colSpan="3">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe aliquid, voluptate odio eius quam sapiente. Odit quibusdam soluta ducimus doloribus fuga? Dolores magnam nulla placeat libero exercitationem quisquam unde suscipit?</p>
+                    <h4>Note Style BackgroundColor: {note.style.backgroundColor}</h4>
                 </td>
             </tr>
-        }
+        } */}
     </Fragment >
 
 }

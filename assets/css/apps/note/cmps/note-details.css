@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    background-color: var(--note-clr-details-bg);
 }
 .note-details h1 {
     color: var(--clr1);

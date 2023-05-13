@@ -12,6 +12,7 @@ import { DataTable } from "../cmps/data-table/data-table.jsx"
 import { NoteDetails } from "../cmps/note-details.jsx"
 import { noteService } from "../services/note.service.js"
 import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
+import { NoteEdit } from '../cmps/note-edit.jsx'
 
 
 export function NoteIndex() {
@@ -54,8 +55,9 @@ export function NoteIndex() {
             <NoteFilter filterBy={filterBy} onSetFilter={onSetFilter} />
             <Link to="/note/edit">Add Note</Link>
             <NoteList notes={notes} onRemoveNote={onRemoveNote} />
-            <DataTable notes={notes} />
-            {/* <NoteDetails notes={notes} /> */}
+            <DataTable notes={notes} onRemoveNote={onRemoveNote} />
+            <NoteDetails notes={notes} />
+            <NoteEdit notes={notes} />
 
             <NoteFooter />
         </section>
