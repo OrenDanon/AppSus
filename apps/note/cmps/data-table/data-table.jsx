@@ -4,7 +4,7 @@ export function DataTable({ notes, onRemoveNote }) {
     // const [expandedRowId, setExpandedRowId] = useState(false)
 
 
-    return <table border="1">
+    return <table className="note-table" border="1">
         <thead>
             <tr>
                 <th>Note Title</th>

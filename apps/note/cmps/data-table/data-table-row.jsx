@@ -13,7 +13,7 @@ export function DataTableRow({ note, onRemoveNote }) {
 
 
     return <Fragment>
-        <tr style={note.style} onClick={() => setIsExpanded(prevIsExpanded => !prevIsExpanded)}>
+        <tr className="note-table-row" style={note.style} onClick={() => setIsExpanded(prevIsExpanded => !prevIsExpanded)}>
             <td>{note.info.title || 'Empty'}</td>
             <td>{note.info.txt}</td>
 
