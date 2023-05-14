@@ -14,8 +14,6 @@ export function NoteFilter({ filterBy, onSetFilter }) {
 
         if (field === 'info') setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: { ['txt']: value } }))
         else setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
-
-        console.log('filterByToEdit from note filter', filterByToEdit)
     }
 
     function onSubmitFilter(ev) {

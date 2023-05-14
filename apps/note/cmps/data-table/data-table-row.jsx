@@ -14,16 +14,18 @@ export function DataTableRow({ note, onRemoveNote }) {
 
     return <Fragment>
         <tr style={note.style} onClick={() => setIsExpanded(prevIsExpanded => !prevIsExpanded)}>
+            <td>{note.info.title || 'Empty'}</td>
+            <td>{note.info.txt}</td>
+
             <td>{note.id}</td>
             <td>{note.createdAt.toString()}</td>
+
             <td>{note.type}</td>
-            <td>{note.info.txt}</td>
-            <td>{note.info.title || 'Empty'}</td>
-            <td>
-                <img src={note.info.url || '/assets//img/audi.jpg'} alt="note image" key={utilService.makeId()} />
-            </td>
             <td>
                 {noteTodos.map(todo => <p key={utilService.makeId()} >{todo}</p>) || 'Empty'}
+            </td>
+            <td>
+                <img src={note.info.url || '/assets/img/Bee.jpg'} alt="note image" key={utilService.makeId()} />
             </td>
             <td>
                 <button onClick={() => onRemoveNote(note.id)} >Remove</button>

@@ -21,8 +21,6 @@ export function NoteIndex() {
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter(searchParams))
     const [notes, setNotes] = useState(storageService.loadFromStorage(NOTE_KEY))
 
-    console.log('notes from note service:', notes);
-
     useEffect(() => {
         loadNotes()
         showSuccessMsg('Welcome to note index!')

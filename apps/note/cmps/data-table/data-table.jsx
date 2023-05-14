@@ -7,13 +7,15 @@ export function DataTable({ notes, onRemoveNote }) {
     return <table border="1">
         <thead>
             <tr>
+                <th>Note Title</th>
+                <th>Note Text</th>
+
                 <th>Id</th>
                 <th>Created At</th>
+
                 <th>Type</th>
-                <th>Note Text</th>
-                <th>Note Title</th>
-                <th>Image</th>
                 <th>Todos List</th>
+                <th>Image</th>
                 <th>Buttons</th>
             </tr>
         </thead>

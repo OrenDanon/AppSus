@@ -36,11 +36,8 @@ function query(filterBy) {
                 notes = notes.filter(note => regExp.test(note.type))
             }
 
-            console.log('filterBy service:', filterBy)
-
             return notes
         })
-        .catch(() => console.log('filterBy service problem:', filterBy))
 
 }
 
@@ -104,58 +101,82 @@ function _createNotes() {
             {
                 id: 'n101',
                 createdAt: Date.now(),
-                type: 'NoteTxt',
+                type: 'Text',
                 isPinned: false,
-                style: { backgroundColor: '#650066' },
-                info: { txt: 'FullStack Me Baby!' }
+                style: { backgroundColor: '#ca00cc' },
+                info: {
+                    title: 'Baby Boom',
+                    txt: 'FullStack Me Baby!',
+                },
+
             },
 
             {
                 id: 'n102',
                 createdAt: Date.now(),
-                type: 'NoteTxt',
+                type: 'Text',
                 isPinned: false,
-                style: { backgroundColor: '#7e0080' },
-                info: { txt: 'HalfStack Me Woman!' }
+                style: { backgroundColor: '#cf1ad1' },
+                info: {
+                    title: 'Girls Power',
+                    txt: 'HalfStack Me Woman!',
+                },
+
             },
 
             {
                 id: 'n103',
                 createdAt: Date.now(),
-                type: 'NoteTxt',
+                type: 'Text',
                 isPinned: false,
-                style: { backgroundColor: '#ca00cc' },
-                info: { txt: 'QuarterStack Me Man!' }
+                style: { backgroundColor: '#d533d6' },
+                info: {
+                    title: 'Brotherhood',
+                    txt: 'QuarterStack Me Man!'
+                },
             },
+
             {
                 id: 'n104',
                 createdAt: Date.now(),
-                type: 'NoteImg',
+                type: 'Todos',
                 isPinned: false,
-                style: { backgroundColor: '#fc00ff' },
+                style: { backgroundColor: '#df66e0' },
                 info: {
-                    txt: 'img',
-                    url: '/assets//img/Fiat.jpg',
-                    title: 'Bobi and Me'
-                },
+                    title: 'Get my stuff together',
+                    txt: 'todos',
+                    todos: [
+                        { txt: 'Driving license', doneAt: 'Not Done Yet!' },
+                        { txt: 'Coding power', doneAt: 187111111 }
+                    ],
+                }
             },
 
             {
                 id: 'n105',
                 createdAt: Date.now(),
-                type: 'NoteTodos',
+                type: 'Image',
                 isPinned: false,
-                style: { backgroundColor: '#fd33ff' },
+                style: { backgroundColor: '#da4ddb' },
                 info: {
-                    txt: 'todos',
-                    title: 'Get my stuff together',
-                    todos: [
-                        { txt: 'Driving license', doneAt: 'Not Done Yet!' },
-                        { txt: 'Coding power', doneAt: 187111111 }
-                    ]
-                }
-            }
+                    title: 'Sea Me Baby',
+                    txt: 'img',
+                    url: '/assets/img/Sea.jpg',
+                },
+            },
 
+            // {
+            //     id: 'n106',
+            //     createdAt: Date.now(),
+            //     type: 'Video',
+            //     isPinned: false,
+            //     style: { backgroundColor: '#e580e6' },
+            //     info: {
+            //         title: 'Learn Fast With Web Dev',
+            //         txt: 'video',
+            //         url: 'https://www.youtube.com/watch?v=CJJtA1NTqN4&ab_channel=WebDevSimplified',
+            //     },
+            // },
         ]
 
         storageService.saveToStorage(NOTE_KEY, notes)

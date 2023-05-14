@@ -40,6 +40,12 @@ export function NoteDetails() {
         navigate('/note')
     }
 
+    function getVidUrl() {
+        var url = 'RGXZORCccbg'
+        return `https://www.youtube.com/embed/${url}`
+        // return note.info.url || 'https://www.youtube.com/watch?v=RGXZORCccbg&ab_channel=MatanMorag'
+    }
+
     if (!note) return <div>Loading...</div>
 
     let noteTodos = []
@@ -49,16 +55,18 @@ export function NoteDetails() {
 
     return (
         <section className="note-details" style={note.style}>
+            <h3>Note Title: {note.info.title || 'Empty'}</h3>
+            <h3>Note Txt: {note.info.txt}</h3>
+
             <h3>Id: {note.id}</h3>
             <h3>Created At: {note.createdAt.toString()}</h3>
+
             <h3>Type: {note.type}</h3>
-            <h3>Note Info Txt: {note.info.txt}</h3>
-            <div>Note Info Image:
-                <img src={note.info.url || '/assets//img/audi.jpg'} alt="note image" key={utilService.makeId()} />
-            </div>
-            <h3>Note Info Title: {note.info.title || 'Empty'}</h3>
-            <div>Note Info Todos List:
+            <div>Note Todos List:
                 {noteTodos.map(todo => <h4 key={utilService.makeId()} >{todo}</h4>) || 'Empty'}
+            </div>
+            <div>Note Image:
+                <img src={note.info.url || '/assets/img/Bee.jpg'} alt="note image" key={utilService.makeId()} />
             </div>
 
             <button onClick={onBack}>Back</button>
